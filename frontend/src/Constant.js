@@ -1,1 +1,1 @@
-const BACKEND_URL="http://localhost:4444" 
+const BACKEND_URL="https://placement-cell-ff82.onrender.com" 
