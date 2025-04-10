@@ -46,7 +46,7 @@ router.post("/jobs", jwtAuth, async (req, res) => {
     const job = await new Job({
       userId: user._id,
       title: data.title,
-      company:data.company,
+      companyName:data.companyName,
       maxApplicants: data.maxApplicants,
       maxPositions: data.maxPositions,
       dateOfPosting: data.dateOfPosting,
@@ -96,7 +96,14 @@ router.get("/jobs", jwtAuth, (req, res) => {
       },
     };
   }
-
+  if (req.query.q) {
+    findParams = {
+      ...findParams,
+      companyName: {
+        $regex: new RegExp(req.query.q, "i"),
+      },
+    };
+  }
   if (req.query.jobType) {
     let jobTypes = [];
     if (Array.isArray(req.query.jobType)) {
@@ -331,6 +338,24 @@ router.delete("/jobs/:id", jwtAuth, (req, res) => {
     .catch((err) => {
       res.status(400).json(err);
     });
+});
+// display users to recruiter
+// Route: Get all users (For Admin Panel)
+router.get("/all-users", async (req, res) => {
+  
+    try {
+      const users=await User.find();
+      if(!users || users.length===0){
+        return res.status(404).json({message:"No Users Found"});
+      } 
+       res.status(200).json(users);
+      
+       
+     } catch (error) {
+       res.status(500).json({ message: "Server error" });
+     }
+  
+ 
 });
 
 // get user's personal details

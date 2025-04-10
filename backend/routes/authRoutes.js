@@ -39,6 +39,8 @@ router.post("/signup", async (req, res) => {
       resume,
       profile,
       year,
+      branch,
+
       address,
     } = req.body;
 
@@ -49,7 +51,10 @@ router.post("/signup", async (req, res) => {
     }
 
     // Create new user
-    const user = new User({ name,email, password, type ,domain,contactNumber,year,CGPA,address,resume,profile});
+
+  
+    const user = new User({ email, password, type ,name,year,branch,domain,contactNumber,education,address,CGPA,resume,profile});
+
     await user.save();
 
     let userDetails;
@@ -73,7 +78,10 @@ router.post("/signup", async (req, res) => {
         rating,
         resume,
         profile,
-        address
+
+        address,
+        branch
+
       });
     }
 

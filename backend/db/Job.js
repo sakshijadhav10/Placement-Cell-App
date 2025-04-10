@@ -10,9 +10,12 @@ let schema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    company:{
-      type:String,
-   
+
+
+    companyName: {
+      type: String,
+      required: true,
+
     },
     maxApplicants: {
       type: Number,

@@ -5,8 +5,9 @@ require("mongoose-type-email");
 let schema = new mongoose.Schema(
   {
     name:{
-      type:String,
-      required:true,
+
+      type:String
+
     },
     email: {
       type: mongoose.SchemaTypes.Email,
@@ -39,12 +40,58 @@ let schema = new mongoose.Schema(
       enum: ["recruiter", "applicant"],
       required: true,
     },
+
     domain: {
       type:String,
       required:true,
       enum:["Web Development","Cyber Security","Data Science","AI & ML","Cloud Computing","DevOps"],
      
     },
+
+    resume:{type:String},
+    profile:{type:String},
+    // resume: { type: mongoose.Schema.Types.ObjectId, ref: "Upload", default: null },
+    // profile: { type: mongoose.Schema.Types.ObjectId, ref: "Upload", default: null },
+    branch:{
+      type:String,
+   
+      // validate: {
+      //   validator: function (v) {
+      //     return ["CSE","DS","Electrical","AI","Civil"].includes(v); // Custom validation
+      //   },
+      //   message: props => `${props.value} is not a valid branch`
+      // }
+      
+    },
+    education: [
+      {
+        institutionName: {
+          type: String,
+          required: true,
+        },
+        startYear: {
+          type: Number,
+          min: 1930,
+          max: new Date().getFullYear(),
+          required: true,
+          validate: Number.isInteger,
+        },
+        endYear: {
+          type: Number,
+          max:2040,
+          validate: [
+            { validator: Number.isInteger, msg: "Year should be an integer" },
+            {
+              validator: function (value) {
+                return this.startYear <= value;
+              },
+              msg: "End year should be greater than or equal to Start year",
+            },
+          ],
+        },
+      },
+    ],
+
    contactNumber : {
       type: String,
       validate: {
@@ -53,29 +100,40 @@ let schema = new mongoose.Schema(
         },
         msg: "Phone number is invalid!",
       },
-      // required:true,
-    },
-    
-    year:{
-      type:String,
-      enum:["FY-A","FY-B","SY-A","SY-B","TY-A","TY-B","BTech-A","BTech-B"],
-      required:true,
-    },
-    CGPA:{
-      type:Number,
-      required:true,
+     
     },
     address:{
-    
+      type:String
+    },
+
+    domain: {
       type:String,
-      required:true,
+      // enum:[],
+      // required: true,
+      // validate: {
+      //   validator: function (v) {
+      //     return ["Web Development","Cyber Security","Data Science","AI & ML","Cloud Computing","DevOps"].includes(v); // Custom validation
+      //   },
+      //   message: props => `${props.value} is not a valid domain`
+      // }
+  
     },
-    resume: {
-      type: String,
+    year:{
+      type:String,
+      
+      // validate: {
+      //   validator: function (v) {
+      //     return ['FY-A','FY-B','SY-A','SY-B','TY-A','TY-B','BTech-A','BTech-B'].includes(v); // Custom validation
+      //   },
+      //   message: props => `${props.value} is not a valid year`
+      // }
     },
-    profile: {
-      type: String,
+    CGPA:{
+      type:Number
     },
+    branch:{
+      type:String
+    }
   },
   { collation: { locale: "en" } }
 );

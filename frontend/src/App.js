@@ -1,4 +1,4 @@
-import { createContext, useState ,useEffect} from "react";
+import { createContext, useState, useEffect } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { Grid, makeStyles } from "@material-ui/core";
 
@@ -20,12 +20,11 @@ import isAuth, { userType } from "./lib/isAuth";
 import DSA from "./component/DSA";
 import Aptitude from "./component/Aptitude";
 import BuildCV from "./component/BuildCV";
-import ApplicantNav from '../src/component/ApplicantNav'
+import ApplicantNav from "../src/component/ApplicantNav";
 import RecruiterNav from "./component/RecruiterNav";
 import UsersInfo from "./component/recruiter/UsersInfo";
 import ForgotPassword from "./component/ForgotPassword";
 import ResetPassword from "./component/ResetPassword";
-
 
 const useStyles = makeStyles((theme) => ({
   body: {
@@ -39,8 +38,6 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
   },
 }));
-
-
 
 export const SetPopupContext = createContext();
 
@@ -72,18 +69,15 @@ function App() {
               <Route exact path="/">
                 <Welcome />
               </Route>
-              <Route exact path='/recruiter'><RecruiterNav/></Route>
-              <Route exact path='/applicant'>
-              <ApplicantNav/>
-              </Route>
+
               <Route exact path="/login">
                 <Login />
               </Route>
-              <Route exact path='/forgot-password'>
-              <ForgotPassword/>
+              <Route exact path="/forgot-password">
+                <ForgotPassword />
               </Route>
-              <Route exact path='/reset-password/:token'>
-              <ResetPassword/>
+              <Route exact path="/reset-password/:token">
+                <ResetPassword />
               </Route>
               <Route exact path="/signup">
                 <Signup />
@@ -95,29 +89,33 @@ function App() {
                 <Home />
               </Route>
               <Route exact path="/dsa">
-                <DSA/>
+                <DSA />
               </Route>
               <Route exact path="/apti">
-                <Aptitude/>
+                <Aptitude />
               </Route>
               <Route exact path="/buildcv">
-                <BuildCV/>
+                <BuildCV />
               </Route>
               <Route exact path="/applications">
                 <Applications />
               </Route>
-              
+
               <Route
-  exact
-  path="/profile"
-  render={() =>
-    userType() === "recruiter" ? <RecruiterProfile /> : <Profile />
-  }
-/>
+                exact
+                path="/profile"
+                render={() =>
+                  userType() === "recruiter" ? (
+                    <RecruiterProfile />
+                  ) : (
+                    <Profile />
+                  )
+                }
+              />
               <Route exact path="/addjob">
                 <CreateJobs />
               </Route>
-              
+
               <Route exact path="/myjobs">
                 <MyJobs />
               </Route>
@@ -128,7 +126,7 @@ function App() {
                 <AcceptedApplicants />
               </Route>
               <Route exact path="/users">
-                <UsersInfo/>
+                <UsersInfo />
               </Route>
               <Route>
                 <ErrorPage />

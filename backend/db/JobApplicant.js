@@ -42,17 +42,6 @@ let schema = new mongoose.Schema(
       type:Number,
 
     },
-    contactNumber : {
-      type: String,
-      validate: {
-        validator: function (v) {
-          return v !== "" ? /\+\d{1,3}\d{10}/.test(v) : true;
-        },
-        msg: "Phone number is invalid!",
-      },
-      // required:true,
-    },
-    year:[String],
     skills: [String],
     domain:[String],
     rating: {
@@ -66,14 +55,26 @@ let schema = new mongoose.Schema(
         msg: "Invalid rating",
       },
     },
-    resume: {
-      type: String,
-    },
+    resume: [
+    String,
+    ],
     profile: {
       type: String,
     },
     address:{
-      type:String,
+      type:String
+    },
+    year:{
+      type:String
+    },
+    contactNumber:{
+      type: String,
+      validate: {
+        validator: function (v) {
+          return v !== "" ? /\+\d{1,3}\d{10}/.test(v) : true;
+        },
+        msg: "Phone number is invalid!",
+      },
     }
   },
   { collation: { locale: "en" } }

@@ -12,6 +12,7 @@ const apiList = {
   rating: `${server}/api/rating`,
   user: `${server}/api/user`,
   applicants: `${server}/api/applicants`,
+  users:`${server}/api/all-users`
 };
 
 export default apiList;

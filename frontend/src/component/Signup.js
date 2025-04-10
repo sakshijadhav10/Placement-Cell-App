@@ -130,8 +130,9 @@ const Login = (props) => {
     name: "",
     education: [],
     skills: [],
-    domain:"",
-    year:"",
+    domain:'',
+    year:'',
+    branch:'',
      CGPA:"",
     resume: "",
     profile: "",
@@ -209,9 +210,7 @@ const Login = (props) => {
         tmpErrorHandler[obj] = inputErrorHandler[obj];
       }
     });
-
-    console.log(education);
-
+  
     let updatedDetails = {
       ...signupDetails,
       education: education
@@ -222,14 +221,15 @@ const Login = (props) => {
           }
           return obj;
         }),
+      contactNumber: phone !== "" ? `+${phone}` : "",
     };
-
+  
     setSignupDetails(updatedDetails);
-
+  
     const verified = !Object.keys(tmpErrorHandler).some((obj) => {
       return tmpErrorHandler[obj].error;
     });
-
+  
     if (verified) {
       axios
         .post(apiList.signup, updatedDetails)
@@ -242,15 +242,13 @@ const Login = (props) => {
             severity: "success",
             message: "Logged in successfully",
           });
-          console.log(response);
         })
         .catch((err) => {
           setPopup({
             open: true,
             severity: "error",
-            message: err.response.data.message,
+            message: err.response?.data?.message || "Signup failed",
           });
-          console.log(err.response);
         });
     } else {
       setInputErrorHandler(tmpErrorHandler);
@@ -260,20 +258,8 @@ const Login = (props) => {
         message: "Incorrect Input",
       });
     }
-   
-    if (phone !== "") {
-      updatedDetails = {
-        ...signupDetails,
-        contactNumber: `+${phone}`,
-      };
-    } else {
-      updatedDetails = {
-        ...signupDetails,
-        contactNumber: "",
-      };
-    }
-
   };
+  
 
   const handleLoginRecruiter = () => {
     const tmpErrorHandler = {};
@@ -461,6 +447,23 @@ const Login = (props) => {
             <MenuItem value="BTech-B">BTech-B</MenuItem>
           </TextField>
         </Grid>
+        <Grid item>
+              <TextField
+                select
+                label="branch"
+                variant="outlined"
+                className={classes.inputBox}
+                value={signupDetails.branch}
+                onChange={(event) => handleInput("branch", event.target.value)}
+              >
+                <MenuItem value="CSE">Computer Science</MenuItem>
+                <MenuItem value="DS">Data Science</MenuItem>
+                <MenuItem value="Electrical">Electrical</MenuItem>
+                <MenuItem value="AI">Artificial Intelligence</MenuItem>
+                <MenuItem value="Civil">Civil</MenuItem>
+                
+              </TextField>
+            </Grid>
             <MultifieldInput
               education={education}
               setEducation={setEducation}
