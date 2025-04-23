@@ -491,28 +491,41 @@ const Login = (props) => {
                 }
               />
             </Grid>
-            <Grid item>
-              <FileUploadInput
-                className={classes.inputBox}
-                label="Resume (.pdf)"
-                icon={<DescriptionIcon />}
-                
-                uploadTo={apiList.uploadResume}
-                handleInput={handleInput}
-                identifier={"resume"}
-              />
-            </Grid>
-            <Grid item>
-              <FileUploadInput
-                className={classes.inputBox}
-                label="Profile Photo (.jpg/.png)"
-                icon={<FaceIcon />}
-              
-                uploadTo={apiList.uploadProfileImage}
-                handleInput={handleInput}
-                identifier={"profile"}
-              />
-            </Grid>
+                 <Grid item>
+  <TextField
+    className={classes.inputBox}
+    label="Resume Link (.pdf)"
+    variant="outlined"
+    fullWidth
+    name="resume"
+    onChange={handleInput}
+    InputProps={{
+      startAdornment: (
+        <InputAdornment position="start">
+          <DescriptionIcon />
+        </InputAdornment>
+      ),
+    }}
+  />
+</Grid>
+
+<Grid item>
+  <TextField
+    className={classes.inputBox}
+    label="Profile Photo Link (.jpg/.png)"
+    variant="outlined"
+    fullWidth
+    name="profile"
+    onChange={handleInput}
+    InputProps={{
+      startAdornment: (
+        <InputAdornment position="start">
+          <FaceIcon />
+        </InputAdornment>
+      ),
+    }}
+  />
+</Grid>
             <Grid item>
           <TextField
             label="Address"
