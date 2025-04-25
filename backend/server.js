@@ -85,6 +85,10 @@ app.use("/api", require("./routes/apiRoutes"));
 // app.use("/upload", require("./routes/uploadRoutes"));
 // app.use("/host", require("./routes/downloadRoutes"));
 
+app.get("/backend", (req, res) => {
+  res.send("Backend is running 🚀");
+});
+
 app.listen(port, () => {
   console.log(`Server started on port ${port}!`);
 });
