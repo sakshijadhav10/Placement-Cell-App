@@ -54,6 +54,7 @@ function App() {
     if (token) {
       localStorage.setItem("token", token);
       localStorage.setItem("type", params.get("type"));
+      localStorage.setItem("name", params.get("name"));
       window.history.replaceState(null, "", "/home"); // Remove token from URL
     }
   }, []);

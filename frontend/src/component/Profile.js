@@ -124,8 +124,8 @@ const Profile = (props) => {
     year:"",
     contactnumber:"",
     address:"",
-    resume: "",
-    profile: "",
+    resumeLink: "",
+    profileLink: "",
   });
   const [phone, setPhone] = useState("");
 
@@ -371,7 +371,7 @@ const Profile = (props) => {
               <Grid item>
                 <FileUploadInput
                   className={classes.inputBox}
-                  label="Resume (.pdf)"
+                  label="ResumeLink (.pdf)"
                   icon={<DescriptionIcon />}
                   uploadTo={apiList.uploadResume}
                   handleInput={handleInput}

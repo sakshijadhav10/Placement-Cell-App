@@ -135,8 +135,8 @@ const Login = (props) => {
     branch:'',
      CGPA:"",
      Percentage:"",
-    resume: "",
-    profile: "",
+    resumeLink: "",
+    profileLink: "",
     bio: "",
     contactNumber: "",
   });
@@ -237,6 +237,7 @@ const Login = (props) => {
         .then((response) => {
           localStorage.setItem("token", response.data.token);
           localStorage.setItem("type", response.data.type);
+          localStorage.setItem("type", response.data.name);
           setLoggedin(isAuth());
           setPopup({
             open: true,
@@ -306,6 +307,7 @@ const Login = (props) => {
         .then((response) => {
           localStorage.setItem("token", response.data.token);
           localStorage.setItem("type", response.data.type);
+          localStorage.setItem("type", response.data.name);
           setLoggedin(isAuth());
           setPopup({
             open: true,
@@ -517,8 +519,9 @@ const Login = (props) => {
     label="Resume Link (.pdf)"
     variant="outlined"
     fullWidth
-    name="resume"
-    onChange={handleInput}
+    // name="resume"
+    value={signupDetails.resumeLink}
+    onChange={(event) => handleInput("resumeLink", event.target.value)}
     InputProps={{
       startAdornment: (
         <InputAdornment position="start">
@@ -535,8 +538,9 @@ const Login = (props) => {
     label="Profile Photo Link (.jpg/.png)"
     variant="outlined"
     fullWidth
-    name="profile"
-    onChange={handleInput}
+    // name="profile"
+    value={signupDetails.profileLink}
+    onChange={(event) => handleInput("profileLink", event.target.value)}
     InputProps={{
       startAdornment: (
         <InputAdornment position="start">

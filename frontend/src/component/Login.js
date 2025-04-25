@@ -103,6 +103,7 @@ const Login = (props) => {
         .then((response) => {
           localStorage.setItem("token", response.data.token);
           localStorage.setItem("type", response.data.type);
+          localStorage.setItem("name", response.data.name);
           setLoggedin(isAuth());
           setPopup({
             open: true,
@@ -140,6 +141,7 @@ const Login = (props) => {
         if (data.user) {
           localStorage.setItem("token", data.token);
           localStorage.setItem("type", data.user.type);
+          localStorage.setItem("type", data.user.name);
           setLoggedin(true); // Update state
         }
       })

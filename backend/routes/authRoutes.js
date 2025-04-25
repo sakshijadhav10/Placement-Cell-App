@@ -9,7 +9,7 @@ const Recruiter = require("../db/Recruiter");
 const nodemailer = require("nodemailer");
 
 const router = express.Router();
-
+const authMiddleware = require("../middleware/auth");
 router.get("/login/success", (req, res) => {
   if (req.user) {
     res.status(200).json({
@@ -37,8 +37,8 @@ router.post("/signup", async (req, res) => {
       Percentage,
       skills,
       rating,
-      resume,
-      profile,
+      resumeLink,
+      profileLink,
       year,
       branch,
 
@@ -54,7 +54,7 @@ router.post("/signup", async (req, res) => {
     // Create new user
 
   
-    const user = new User({ email, password, type ,name,year,branch,domain,contactNumber,education,address,CGPA,Percentage,resume,profile});
+    const user = new User({ email, password, type ,name,year,branch,domain,contactNumber,education,address,CGPA,Percentage,resumeLink,profileLink});
 
     await user.save();
 
@@ -78,8 +78,8 @@ router.post("/signup", async (req, res) => {
         domain,
         contactNumber,
         rating,
-        resume,
-        profile,
+        resumeLink,
+        profileLink,
 
         address,
         branch
@@ -94,7 +94,7 @@ router.post("/signup", async (req, res) => {
       expiresIn: "1d",
     });
 
-    res.status(201).json({ token, type: user.type });
+    res.status(201).json({ token, type: user.type,name:user.name });
   } catch (err) {
     console.error("Signup Error:", err);
     res.status(500).json({ message: "Internal Server Error" });
@@ -136,6 +136,7 @@ router.post("/login", async (req, res) => {
     res.json({
       token: token,
       type: user.type,
+      name:user.name
     });
   } catch (error) {
     console.log(error);
@@ -260,6 +261,24 @@ router.post("/reset-password", async (req, res) => {
     res.status(500).json({ message: "Invalid token" });
   }
 });
+ // we'll define this in step 2
+
+// ✅ Get logged-in user info
+router.get("/me", authMiddleware, async (req, res) => {
+  const { email } = req.body;
+  console.log(email);
+  
+  try {
+    const user = await User.findOne({email });
+    console.log(user);
+    
+    if (!user) return res.status(404).json({ message: "User not found" });
+    res.status(200).json(user);
+  } catch (err) {
+    res.status(500).json({ message: "Server Error" });
+  }
+});
+
 
 router.get("/logout", (req, res) => {
   req.logout();

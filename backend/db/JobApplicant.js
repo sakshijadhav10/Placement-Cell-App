@@ -55,10 +55,10 @@ let schema = new mongoose.Schema(
         msg: "Invalid rating",
       },
     },
-    resume: [
-    String,
-    ],
-    profile: {
+    resumeLink: {
+      type:String
+    },
+    profileLink: {
       type: String,
     },
     address:{

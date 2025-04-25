@@ -77,8 +77,7 @@ const UsersInfo = () => {
   }, []);
 
   const handleSearch = () => {
-    // Note: Filtering on the client may not be ideal if you need to preserve the original list.
-    // It might be better to filter on the backend or maintain a copy of the original list.
+    
     const filteredList = users.filter(
       (user) =>
         user.year.toLowerCase().includes(searchText.toLowerCase()) ||
@@ -164,10 +163,10 @@ const UsersInfo = () => {
                 <StyledTableCell>{user.CGPA}</StyledTableCell>
                 <StyledTableCell>{user.Percentage}</StyledTableCell>
                 <StyledTableCell>{user.address}</StyledTableCell>
-                {/* <StyledTableCell>
+                <StyledTableCell>
   {user.resumeLink ? (
     <a
-      href={`http://localhost:4444/api/file/${user.resumeLink}`}
+      href={user.resumeLink}
       target="_blank"
       rel="noreferrer"
     >
@@ -180,17 +179,17 @@ const UsersInfo = () => {
 
 <StyledTableCell>
   {user.profileLink ? (
-    <img
-      src={`http://localhost:4444/api/file/${user.profileLink}`}
-      alt="Profile"
-      width={50}
-      height={50}
-      style={{ borderRadius: "50%" }}
-    />
+    <a
+    href={user.profileLink}
+    target="_blank"
+    rel="noreferrer"
+  >
+    View Profile Picture
+  </a>
   ) : (
     "N/A"
   )}
-</StyledTableCell> */}
+</StyledTableCell>
 
 
               </StyledTableRow>

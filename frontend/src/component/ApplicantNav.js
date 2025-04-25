@@ -41,6 +41,7 @@ import { useEffect } from "react";
     const handleLogout = () => {
   localStorage.removeItem("token");
   localStorage.removeItem("type");
+  localStorage.removeItem("name");
   history.push("/login");
 };
 

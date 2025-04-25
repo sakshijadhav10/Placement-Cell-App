@@ -504,11 +504,11 @@ router.put("/user", jwtAuth, (req, res) => {
         if (data.skills) {
           jobApplicant.skills = data.skills;
         }
-        if (data.resume) {
-          jobApplicant.resume = data.resume;
+        if (data.resumeLink) {
+          jobApplicant.resumeLink = data.resumeLink;
         }
-        if (data.profile) {
-          jobApplicant.profile = data.profile;
+        if (data.profileLink) {
+          jobApplicant.profileLink = data.profileLink;
         }
         if(data.address){
           jobApplicant.address=data.address;

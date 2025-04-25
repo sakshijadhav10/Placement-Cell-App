@@ -48,8 +48,8 @@ let schema = new mongoose.Schema(
      
     },
 
-    resumeLink: { type: String, default: null }, // store file URL
-    profileLink: { type: String, default: null }, // store file URL
+    resumeLink: { type: String,}, 
+    profileLink: { type: String}, 
     
     branch:{
       type:String,
@@ -113,9 +113,7 @@ let schema = new mongoose.Schema(
     Percentage:{
       type:Number
     },
-    branch:{
-      type:String
-    }
+   
   },
   { collation: { locale: "en" } }
 );
