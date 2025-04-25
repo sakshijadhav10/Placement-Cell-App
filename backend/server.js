@@ -10,8 +10,18 @@ require("dotenv").config();
 const passport = require("./lib/passport");
 
 // MongoDB
-mongoose
-  .connect("mongodb://localhost:27017/Placement-Cell", {
+// mongoose
+//   .connect("mongodb://localhost:27017/Placement-Cell", {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true,
+//     useCreateIndex: true,
+//     useFindAndModify: false,
+//   })
+//   .then((res) => console.log("Connected to DB"))
+//   .catch((err) => console.log(err));
+
+  mongoose
+  .connect("mongodb+srv://sakshi_10:Sakshi10@cluster0.p8sxjzs.mongodb.net/PlacementCell", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
