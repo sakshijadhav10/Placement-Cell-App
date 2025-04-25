@@ -141,7 +141,7 @@ const Login = (props) => {
         if (data.user) {
           localStorage.setItem("token", data.token);
           localStorage.setItem("type", data.user.type);
-          localStorage.setItem("type", data.user.name);
+          localStorage.setItem("name", data.user.name);
           setLoggedin(true); // Update state
         }
       })
