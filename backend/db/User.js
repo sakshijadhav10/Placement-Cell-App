@@ -44,23 +44,16 @@ let schema = new mongoose.Schema(
     domain: {
       type:String,
       required:true,
-      enum:["Web Development","Cyber Security","Data Science","AI & ML","Cloud Computing","DevOps"],
+      enum:["Web Development","Cyber Security","Data Science","AI & ML","Cloud Computing","DevOps","other"],
      
     },
 
-    resume:{type:String},
-    profile:{type:String},
-    // resume: { type: mongoose.Schema.Types.ObjectId, ref: "Upload", default: null },
-    // profile: { type: mongoose.Schema.Types.ObjectId, ref: "Upload", default: null },
+    resumeLink: { type: String, default: null }, // store file URL
+    profileLink: { type: String, default: null }, // store file URL
+    
     branch:{
       type:String,
    
-      // validate: {
-      //   validator: function (v) {
-      //     return ["CSE","DS","Electrical","AI","Civil"].includes(v); // Custom validation
-      //   },
-      //   message: props => `${props.value} is not a valid branch`
-      // }
       
     },
     education: [
@@ -108,27 +101,16 @@ let schema = new mongoose.Schema(
 
     domain: {
       type:String,
-      // enum:[],
-      // required: true,
-      // validate: {
-      //   validator: function (v) {
-      //     return ["Web Development","Cyber Security","Data Science","AI & ML","Cloud Computing","DevOps"].includes(v); // Custom validation
-      //   },
-      //   message: props => `${props.value} is not a valid domain`
-      // }
-  
+      
     },
     year:{
       type:String,
       
-      // validate: {
-      //   validator: function (v) {
-      //     return ['FY-A','FY-B','SY-A','SY-B','TY-A','TY-B','BTech-A','BTech-B'].includes(v); // Custom validation
-      //   },
-      //   message: props => `${props.value} is not a valid year`
-      // }
     },
     CGPA:{
+      type:Number
+    },
+    Percentage:{
       type:Number
     },
     branch:{
@@ -142,7 +124,7 @@ let schema = new mongoose.Schema(
 schema.pre("save", function (next) {
   let user = this;
 
-  // if the data is not modified
+
   if (!user.isModified("password")) {
     return next();
   }
@@ -156,7 +138,6 @@ schema.pre("save", function (next) {
   });
 });
 
-// Password verification upon login
 schema.methods.login = function (password) {
   let user = this;
 

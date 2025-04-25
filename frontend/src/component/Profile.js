@@ -120,6 +120,7 @@ const Profile = (props) => {
     skills: [],
     domain:"",
     CGPA:"",
+    Percentage:"",
     year:"",
     contactnumber:"",
     address:"",
@@ -287,6 +288,16 @@ const Profile = (props) => {
                 />
             </Grid>
             <Grid item>
+                 <TextField
+                  label="Percentage"
+                  value={profileDetails.Percentage}
+                  onChange={(event) => handleInput("Percentage", event.target.value)}
+                  className={classes.inputBox}
+                  variant="outlined"
+                  fullWidth
+                />
+            </Grid>
+            <Grid item>
               <TextField
                 select
                 label="Domain"
@@ -301,6 +312,7 @@ const Profile = (props) => {
                 <MenuItem value="AI & ML">AI & ML</MenuItem>
                 <MenuItem value="Cloud Computing">Cloud Computing</MenuItem>
                 <MenuItem value="DevOps">DevOps</MenuItem>
+                <MenuItem value="other">Other</MenuItem>
               </TextField>
             </Grid>
             <Grid item>
@@ -314,12 +326,17 @@ const Profile = (props) => {
           >
             <MenuItem value="First-Year-A">FY-A</MenuItem>
             <MenuItem value="First-Year-B">FY-B</MenuItem>
+            <MenuItem value="First-Year-C">FY-C</MenuItem>
+            <MenuItem value="First-Year-D">FY-D</MenuItem>
             <MenuItem value="Second-Year-A">SY-A</MenuItem>
             <MenuItem value="Second-Year-B">SY-B</MenuItem>
+            <MenuItem value="Second-Year-C">SY-C</MenuItem>
             <MenuItem value="Third-Year-A">TY-A</MenuItem>
             <MenuItem value="Third-Year-B">TY-B</MenuItem>
+            <MenuItem value="Third-Year-C">TY-C</MenuItem>
             <MenuItem value="Fourth-Year-A">BTech-A</MenuItem>
             <MenuItem value="Fourth-Year-B">BTech-B</MenuItem>
+            <MenuItem value="Fourth-Year-C">BTech-C</MenuItem>
           </TextField>
         </Grid>
               

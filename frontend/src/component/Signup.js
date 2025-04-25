@@ -134,6 +134,7 @@ const Login = (props) => {
     year:'',
     branch:'',
      CGPA:"",
+     Percentage:"",
     resume: "",
     profile: "",
     bio: "",
@@ -426,6 +427,7 @@ const Login = (props) => {
                 <MenuItem value="AI & ML">AI & ML</MenuItem>
                 <MenuItem value="Cloud Computing">Cloud Computing</MenuItem>
                 <MenuItem value="DevOps">DevOps</MenuItem>
+                <MenuItem value="other">Other</MenuItem>
               </TextField>
             </Grid>
             <Grid item>
@@ -439,12 +441,17 @@ const Login = (props) => {
           >
             <MenuItem value="FY-A">FY-A</MenuItem>
             <MenuItem value="FY-B">FY-B</MenuItem>
+            <MenuItem value="FY-C">FY-C</MenuItem>
+            <MenuItem value="FY-D">FY-D</MenuItem>
             <MenuItem value="SY-A">SY-A</MenuItem>
             <MenuItem value="SY-B">SY-B</MenuItem>
+            <MenuItem value="SY-C">SY-C</MenuItem>
             <MenuItem value="TY-A">TY-A</MenuItem>
             <MenuItem value="TY-B">TY-B</MenuItem>
+            <MenuItem value="TY-C">TY-C</MenuItem>
             <MenuItem value="BTech-A">BTech-A</MenuItem>
             <MenuItem value="BTech-B">BTech-B</MenuItem>
+            <MenuItem value="BTech-C">BTech-C</MenuItem>
           </TextField>
         </Grid>
         <Grid item>
@@ -461,6 +468,7 @@ const Login = (props) => {
                 <MenuItem value="Electrical">Electrical</MenuItem>
                 <MenuItem value="AI">Artificial Intelligence</MenuItem>
                 <MenuItem value="Civil">Civil</MenuItem>
+                <MenuItem value="Other">Other</MenuItem>
                 
               </TextField>
             </Grid>
@@ -477,6 +485,18 @@ const Login = (props) => {
               helperText="Please Enter your CGPA"
               value={signupDetails.CGPA}
               onChange={(event) => handleInput("CGPA", event.target.value)} >
+
+              </TextField>
+            </Grid>
+            <Grid item>
+              <TextField 
+              className={classes.inputBox}
+              label="Percentage"
+              type="number"
+              variant="outlined"
+              helperText="Please Enter your percentage"
+              value={signupDetails.Percentage}
+              onChange={(event) => handleInput("Percentage", event.target.value)} >
 
               </TextField>
             </Grid>

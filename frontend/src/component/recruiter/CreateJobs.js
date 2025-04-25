@@ -35,11 +35,9 @@ const CreateJobs = (props) => {
 
   const [jobDetails, setJobDetails] = useState({
     title: "",
-<<<<<<< HEAD
-    company:"",
-=======
+
     companyName:"",
->>>>>>> a29d0b8e4c10edd85cfae699867eab89a0286c62
+
     maxApplicants: 100,
     maxPositions: 30,
     deadline: new Date(new Date().getTime() + 10 * 24 * 60 * 60 * 1000)
@@ -75,11 +73,9 @@ const CreateJobs = (props) => {
         });
         setJobDetails({
           title: "",
-<<<<<<< HEAD
-          company:"",
-=======
+
           companyName:"",
->>>>>>> a29d0b8e4c10edd85cfae699867eab89a0286c62
+
           maxApplicants: 100,
           maxPositions: 30,
           deadline: new Date(new Date().getTime() + 10 * 24 * 60 * 60 * 1000)
@@ -147,17 +143,12 @@ const CreateJobs = (props) => {
                 </Grid>
                 <Grid item>
                   <TextField
-<<<<<<< HEAD
-                    label="Compant Name"
-                    value={jobDetails.company}
-                    onChange={(event) =>
-                      handleInput("company", event.target.value)
-=======
+
                     label="Company Name"
                     value={jobDetails.companyName}
                     onChange={(event) =>
                       handleInput("companyName", event.target.value)
->>>>>>> a29d0b8e4c10edd85cfae699867eab89a0286c62
+
                     }
                     variant="outlined"
                     fullWidth
@@ -204,6 +195,7 @@ const CreateJobs = (props) => {
                 <MenuItem value="AI & ML">AI & ML</MenuItem>
                 <MenuItem value="Cloud Computing">Cloud Computing</MenuItem>
                 <MenuItem value="DevOps">DevOps</MenuItem>
+                <MenuItem value="other">Other</MenuItem>
               </TextField>
             </Grid>
                 <Grid item>

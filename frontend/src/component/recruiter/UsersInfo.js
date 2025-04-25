@@ -137,6 +137,9 @@ const UsersInfo = () => {
                 <b>CGPA</b>
               </StyledTableCell>
               <StyledTableCell>
+                <b>Percentage</b>
+              </StyledTableCell>
+              <StyledTableCell>
                 <b>Address</b>
               </StyledTableCell>
               <StyledTableCell>
@@ -148,6 +151,7 @@ const UsersInfo = () => {
             </TableRow>
           </TableHead>
           <TableBody>
+           
             {users.map((user) => (
               <StyledTableRow key={user.email}>
                 <StyledTableCell>{user.name}</StyledTableCell>
@@ -158,31 +162,37 @@ const UsersInfo = () => {
                 <StyledTableCell>{user.branch}</StyledTableCell>
                 <StyledTableCell>{user.contactNumber}</StyledTableCell>
                 <StyledTableCell>{user.CGPA}</StyledTableCell>
+                <StyledTableCell>{user.Percentage}</StyledTableCell>
                 <StyledTableCell>{user.address}</StyledTableCell>
-                <StyledTableCell>
-                  {user.resume ? (
-                    <a
-                      href={`/file/${user.resume}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      View Resume
-                    </a>
-                  ) : (
-                    "Not Provided"
-                  )}
-                </StyledTableCell>
-                <StyledTableCell>
-                  {user.profile ? (
-                    <img
-                      src={`/file/${user.profile}`}
-                      alt={`${user.name}'s Profile`}
-                      style={{ maxWidth: "100px" }}
-                    />
-                  ) : (
-                    "Not Provided"
-                  )}
-                </StyledTableCell>
+                {/* <StyledTableCell>
+  {user.resumeLink ? (
+    <a
+      href={`http://localhost:4444/api/file/${user.resumeLink}`}
+      target="_blank"
+      rel="noreferrer"
+    >
+      View Resume
+    </a>
+  ) : (
+    "N/A"
+  )}
+</StyledTableCell>
+
+<StyledTableCell>
+  {user.profileLink ? (
+    <img
+      src={`http://localhost:4444/api/file/${user.profileLink}`}
+      alt="Profile"
+      width={50}
+      height={50}
+      style={{ borderRadius: "50%" }}
+    />
+  ) : (
+    "N/A"
+  )}
+</StyledTableCell> */}
+
+
               </StyledTableRow>
             ))}
           </TableBody>

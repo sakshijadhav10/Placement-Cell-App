@@ -34,6 +34,7 @@ router.post("/signup", async (req, res) => {
       bio,
       education,
       CGPA,
+      Percentage,
       skills,
       rating,
       resume,
@@ -53,7 +54,7 @@ router.post("/signup", async (req, res) => {
     // Create new user
 
   
-    const user = new User({ email, password, type ,name,year,branch,domain,contactNumber,education,address,CGPA,resume,profile});
+    const user = new User({ email, password, type ,name,year,branch,domain,contactNumber,education,address,CGPA,Percentage,resume,profile});
 
     await user.save();
 
@@ -71,6 +72,7 @@ router.post("/signup", async (req, res) => {
         name,
         education,
         CGPA,
+        Percentage,
         year,
         skills,
         domain,

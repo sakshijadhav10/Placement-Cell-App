@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const { GridFSBucket } = require("mongodb");
 const { v4: uuidv4 } = require("uuid");
 
+
 const router = express.Router();
 
 // Create GridFSBucket instance once the connection is ready
@@ -33,10 +34,15 @@ router.post("/resume", upload.single("file"), async (req, res) => {
     });
     uploadStream.end(file.buffer);
 
-    uploadStream.on("finish", (uploadedFile) => {
-      // Save uploadedFile._id.toString() in your user document
-      res.json({ message: "File uploaded", fileId: uploadedFile._id.toString() });
+    uploadStream.on("finish", async (uploadedFile) => {
+      const fileUrl = `${req.protocol}://${req.get("host")}/api/files/${uploadedFile._id}`;
+    
+      // update user document with resume link
+      await UserAuth.findByIdAndUpdate(req.user._id, { resumeLink: fileUrl });
+    
+      res.json({ message: "File uploaded", fileUrl });
     });
+    
 
     uploadStream.on("error", (error) => {
       res.status(500).json({ message: "Error uploading file", error });
@@ -62,10 +68,15 @@ router.post("/profile", upload.single("file"), async (req, res) => {
     });
     uploadStream.end(file.buffer);
 
-    uploadStream.on("finish", (uploadedFile) => {
-      // Save uploadedFile._id.toString() in your user document
-      res.json({ message: "Profile uploaded", fileId: uploadedFile._id.toString() });
+    uploadStream.on("finish", async (uploadedFile) => {
+      const fileUrl = `${req.protocol}://${req.get("host")}/api/files/${uploadedFile._id}`;
+    
+      // update user document with resume link
+      await UserAuth.findByIdAndUpdate(req.user._id, { profileLink: fileUrl });
+    
+      res.json({ message: "File uploaded", fileUrl });
     });
+    
 
     uploadStream.on("error", (error) => {
       res.status(500).json({ message: "Error uploading profile", error });

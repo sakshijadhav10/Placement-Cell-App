@@ -489,6 +489,9 @@ router.put("/user", jwtAuth, (req, res) => {
         if(data.CGPA){
           jobApplicant.CGPA=data.CGPA;
         }
+        if(data.Percentage){
+          jobApplicant.Percentage=data.Percentage;
+        }
         if(data.year){
           jobApplicant.year=data.year;
         }

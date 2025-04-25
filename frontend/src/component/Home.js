@@ -107,11 +107,7 @@ const JobTile = (props) => {
             <Typography variant="h5">{job.title}</Typography>
           </Grid>
           <Grid item>
-<<<<<<< HEAD
-            <Typography variant="h5">{job.company}</Typography>
-=======
             <Typography variant="h5">{job.companyName}</Typography>
->>>>>>> a29d0b8e4c10edd85cfae699867eab89a0286c62
           </Grid>
           <Grid item>
             <Rating value={job.rating !== -1 ? job.rating : null} readOnly />
