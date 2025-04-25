@@ -85,7 +85,7 @@ app.use("/api", require("./routes/apiRoutes"));
 // app.use("/upload", require("./routes/uploadRoutes"));
 // app.use("/host", require("./routes/downloadRoutes"));
 
-app.get("/backend", (req, res) => {
+app.get("/", (req, res) => {
   res.send("Backend is running 🚀");
 });
 
