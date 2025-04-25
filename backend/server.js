@@ -19,16 +19,13 @@ const passport = require("./lib/passport");
 //   })
 //   .then((res) => console.log("Connected to DB"))
 //   .catch((err) => console.log(err));
-
-  mongoose
+mongoose
   .connect("mongodb+srv://sakshi_10:Sakshi10@cluster0.p8sxjzs.mongodb.net/PlacementCell", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
   })
-  .then((res) => console.log("Connected to DB"))
-  .catch((err) => console.log(err));
+  .then(() => console.log("✅ Connected to MongoDB Atlas"))
+  .catch((err) => console.error("❌ MongoDB connection error:", err));
 
 // initialising directories
 // if (!fs.existsSync("./public")) {

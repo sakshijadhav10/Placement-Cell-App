@@ -130,9 +130,9 @@ const Login = (props) => {
   };
 
   const googleAuth = () => {
-    window.open("http://localhost:4444/auth/google/callback", "_self");
+    window.open("https://placement-cell-app-2.onrender.com/auth/google/callback", "_self");
   
-    fetch("http://localhost:4444/auth/login/success", {
+    fetch("https://placement-cell-app-2.onrender.com/auth/login/success", {
       method: "GET",
       credentials: "include",
     })
