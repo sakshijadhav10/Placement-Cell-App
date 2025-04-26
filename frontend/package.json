@@ -1,5 +1,5 @@
 {
-  "name": "job-portal",
+  "name": "placement-cell",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -31,7 +31,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "proxy": "https://placement-cell-ff82.onrender.com",
+  "proxy": "https://localhost:4444",
   "eslintConfig": {
     "extends": [
       "react-app",

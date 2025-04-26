@@ -13,6 +13,7 @@ import ChipInput from "material-ui-chip-input";
 import FileUploadInput from "../lib/FileUploadInput";
 import DescriptionIcon from "@material-ui/icons/Description";
 import FaceIcon from "@material-ui/icons/Face";
+import InputAdornment from '@material-ui/core/InputAdornment';
 
 import { SetPopupContext } from "../App";
 
@@ -368,7 +369,7 @@ const Profile = (props) => {
                   fullWidth
                 />
               </Grid>
-              <Grid item>
+              {/* <Grid item>
                 <FileUploadInput
                   className={classes.inputBox}
                   label="ResumeLink (.pdf)"
@@ -388,7 +389,45 @@ const Profile = (props) => {
                   identifier={"profile"}
                 />
               </Grid>
+              <Grid item> */}
+                               <Grid item>
+                <TextField
+                  className={classes.inputBox}
+                  label="Resume Link (.pdf)"
+                  variant="outlined"
+                  fullWidth
+                  // name="resume"
+                  value={profileDetails.resumeLink}
+                  onChange={(event) => handleInput("resumeLink", event.target.value)}
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <DescriptionIcon />
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+              </Grid>
+              
               <Grid item>
+                <TextField
+                  className={classes.inputBox}
+                  label="Profile Photo Link (.jpg/.png)"
+                  variant="outlined"
+                  fullWidth
+                  // name="profile"
+                  value={profileDetails.profileLink}
+                  onChange={(event) => handleInput("profileLink", event.target.value)}
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <FaceIcon />
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+              </Grid>
+                          <Grid item>
           <TextField
             label="Address"
             multiline

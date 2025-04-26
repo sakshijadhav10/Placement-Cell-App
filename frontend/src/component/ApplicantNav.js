@@ -5,7 +5,7 @@ import {
     Button,
     makeStyles,
   } from "@material-ui/core";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
   import { useHistory } from "react-router-dom/cjs/react-router-dom.min";// React Router v6
   
   const useStyles = makeStyles((theme) => ({
@@ -42,6 +42,7 @@ import { useEffect } from "react";
   localStorage.removeItem("token");
   localStorage.removeItem("type");
   localStorage.removeItem("name");
+  localStorage.removeItem("resumeLink");
   history.push("/login");
 };
 

@@ -237,7 +237,8 @@ const Login = (props) => {
         .then((response) => {
           localStorage.setItem("token", response.data.token);
           localStorage.setItem("type", response.data.type);
-          localStorage.setItem("type", response.data.name);
+          localStorage.setItem("name", response.data.name);
+          localStorage.setItem("resumeLink",response.data.resumeLink)
           setLoggedin(isAuth());
           setPopup({
             open: true,
@@ -307,7 +308,9 @@ const Login = (props) => {
         .then((response) => {
           localStorage.setItem("token", response.data.token);
           localStorage.setItem("type", response.data.type);
-          localStorage.setItem("type", response.data.name);
+          localStorage.setItem("name", response.data.name);
+          localStorage.setItem("resumeLink", response.data.resumeLink);
+
           setLoggedin(isAuth());
           setPopup({
             open: true,

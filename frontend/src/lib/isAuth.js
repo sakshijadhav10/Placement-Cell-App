@@ -8,4 +8,8 @@ export const userType = () => {
 export const userName = () => {
   return localStorage.getItem("name");
 };
+export const resumeLink = () => {
+  return localStorage.getItem("resumeLink");
+};
+
 export default isAuth;

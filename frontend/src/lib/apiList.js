@@ -1,4 +1,4 @@
-export const server = "https://placement-cell-backend-ny07.onrender.com";
+export const server = "http://localhost:4444";
 
 const apiList = {
   login: `${server}/auth/login`,

@@ -29,25 +29,8 @@ const Navbar = () => {
   const classes = useStyles();
   let history = useHistory();
 
-//   const [ setUserName] = useState("");
 
-// useEffect(() => {
-//   const fetchUser = async () => {
-//     try {
-//       const token = localStorage.getItem("token");
-//       const response = await axios.get(apiList.signup, {
-//         headers: {
-//           Authorization: `Bearer ${token}`,
-//         },
-//       });
-//       setUserName(response.name);
-//     } catch (error) {
-//       console.error("Error fetching user:", error);
-//     }
-//   };
 
-//   if (isAuth()) fetchUser();
-// }, []);
   const handleClick = (location) => {
     history.push(location);
   };

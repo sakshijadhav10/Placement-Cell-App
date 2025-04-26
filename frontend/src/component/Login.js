@@ -104,6 +104,7 @@ const Login = (props) => {
           localStorage.setItem("token", response.data.token);
           localStorage.setItem("type", response.data.type);
           localStorage.setItem("name", response.data.name);
+          localStorage.setItem("resumeLink", response.data.resumeLink);
           setLoggedin(isAuth());
           setPopup({
             open: true,
@@ -129,25 +130,7 @@ const Login = (props) => {
     }
   };
 
-  const googleAuth = () => {
-    window.open("https://placement-cell-app-2.onrender.com/auth/google/callback", "_self");
-  
-    fetch("https://placement-cell-app-2.onrender.com/auth/login/success", {
-      method: "GET",
-      credentials: "include",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.user) {
-          localStorage.setItem("token", data.token);
-          localStorage.setItem("type", data.user.type);
-          localStorage.setItem("name", data.user.name);
-          setLoggedin(true); // Update state
-        }
-      })
-      .catch((err) => console.log(err));
-  };
-  
+
 
   return loggedin ? (
    
@@ -203,15 +186,7 @@ const Login = (props) => {
             Login
           </Button>
         </Grid>
-        <Grid item>
-          <Button
-            onClick={googleAuth}
-            className={classes.googleButton}
-            startIcon={<FcGoogle className={classes.googleIcon} />}
-          >
-            Sign in with Google
-          </Button>
-        </Grid>
+      
         <Typography className={classes.signupText}>
           New here?{" "}
           <Link component={RouterLink} to="/signup" color="primary">

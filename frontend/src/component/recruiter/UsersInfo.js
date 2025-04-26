@@ -152,48 +152,54 @@ const UsersInfo = () => {
           <TableBody>
            
             {users.map((user) => (
-              <StyledTableRow key={user.email}>
-                <StyledTableCell>{user.name}</StyledTableCell>
-                <StyledTableCell>
-                  <a href={`mailto:${user.email}`}>{user.email}</a>
-                </StyledTableCell>
-                <StyledTableCell>{user.year}</StyledTableCell>
-                <StyledTableCell>{user.branch}</StyledTableCell>
-                <StyledTableCell>{user.contactNumber}</StyledTableCell>
-                <StyledTableCell>{user.CGPA}</StyledTableCell>
-                <StyledTableCell>{user.Percentage}</StyledTableCell>
-                <StyledTableCell>{user.address}</StyledTableCell>
-                <StyledTableCell>
-  {user.resumeLink ? (
-    <a
-      href={user.resumeLink}
+                (user.type==="applicant"?
+                  <>
+                  <StyledTableRow key={user.email}>
+                  <StyledTableCell>{user.name}</StyledTableCell>
+                  <StyledTableCell>
+                    <a href={`mailto:${user.email}`}>{user.email}</a>
+                  </StyledTableCell>
+                  <StyledTableCell>{user.year}</StyledTableCell>
+                  <StyledTableCell>{user.branch}</StyledTableCell>
+                  <StyledTableCell>{user.contactNumber}</StyledTableCell>
+                  <StyledTableCell>{user.CGPA}</StyledTableCell>
+                  <StyledTableCell>{user.Percentage}</StyledTableCell>
+                  <StyledTableCell>{user.address}</StyledTableCell>
+                  <StyledTableCell>
+    {user.resumeLink ? (
+      <a
+        href={user.resumeLink}
+        target="_blank"
+        rel="noreferrer"
+      >
+        View Resume
+      </a>
+    ) : (
+      "N/A"
+    )}
+  </StyledTableCell>
+  
+  <StyledTableCell>
+    {user.profileLink ? (
+      <a
+      href={user.profileLink}
       target="_blank"
       rel="noreferrer"
     >
-      View Resume
+      View Profile Picture
     </a>
-  ) : (
-    "N/A"
-  )}
-</StyledTableCell>
-
-<StyledTableCell>
-  {user.profileLink ? (
-    <a
-    href={user.profileLink}
-    target="_blank"
-    rel="noreferrer"
-  >
-    View Profile Picture
-  </a>
-  ) : (
-    "N/A"
-  )}
-</StyledTableCell>
-
-
-              </StyledTableRow>
+    ) : (
+      "N/A"
+    )}
+  </StyledTableCell>
+  
+  
+                </StyledTableRow>
+              
+                  </>
+                  :"")
             ))}
+          
           </TableBody>
         </Table>
       </Box>
