@@ -13,8 +13,14 @@ import { makeStyles } from "@mui/styles";
 import axios from "axios";
 
 import FileUploadInput from "../lib/FileUploadInput";
+<<<<<<< HEAD
 import DescriptionIcon from "@mui/icons-material/Description";
 import FaceIcon from "@mui/icons-material/Face";
+=======
+import DescriptionIcon from "@material-ui/icons/Description";
+import FaceIcon from "@material-ui/icons/Face";
+import InputAdornment from '@material-ui/core/InputAdornment';
+>>>>>>> 306fa941cf03632aca14bfd1f244fea05648ef86
 
 import { SetPopupContext } from "../App";
 
@@ -298,11 +304,16 @@ const Profile = (props) => {
                   fullWidth
                 />
               </Grid>
+<<<<<<< HEAD
               <Grid item>
                 <TextField
                   select
                   label="Domain"
                   variant="outlined"
+=======
+              {/* <Grid item>
+                <FileUploadInput
+>>>>>>> 306fa941cf03632aca14bfd1f244fea05648ef86
                   className={classes.inputBox}
                   value={profileDetails.domain}
                   onChange={(event) => handleInput("domain", event.target.value)}
@@ -375,6 +386,58 @@ const Profile = (props) => {
                   Edit Details
                 </Button>
               </Grid>
+<<<<<<< HEAD
+=======
+              <Grid item> */}
+                               <Grid item>
+                <TextField
+                  className={classes.inputBox}
+                  label="Resume Link (.pdf)"
+                  variant="outlined"
+                  fullWidth
+                  // name="resume"
+                  value={profileDetails.resumeLink}
+                  onChange={(event) => handleInput("resumeLink", event.target.value)}
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <DescriptionIcon />
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+              </Grid>
+              
+              <Grid item>
+                <TextField
+                  className={classes.inputBox}
+                  label="Profile Photo Link (.jpg/.png)"
+                  variant="outlined"
+                  fullWidth
+                  // name="profile"
+                  value={profileDetails.profileLink}
+                  onChange={(event) => handleInput("profileLink", event.target.value)}
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <FaceIcon />
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+              </Grid>
+                          <Grid item>
+          <TextField
+            label="Address"
+            multiline
+            rows={4}
+            className={classes.inputBox}
+            variant="outlined"
+            value={profileDetails.address}
+            onChange={(event) => handleInput("address", event.target.value)}
+          />
+        </Grid>
+>>>>>>> 306fa941cf03632aca14bfd1f244fea05648ef86
             </Grid>
           </Paper>
         </Grid>

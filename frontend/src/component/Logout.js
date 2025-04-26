@@ -9,6 +9,7 @@ const Logout = (props) => {
     localStorage.removeItem("token");
     localStorage.removeItem("type");
     localStorage.removeItem("name");
+    localStorage.removeItem("resumeLink");
     setPopup({
       open: true,
       severity: "success",

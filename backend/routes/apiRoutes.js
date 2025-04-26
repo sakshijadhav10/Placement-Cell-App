@@ -738,6 +738,7 @@ router.get("/applications", jwtAuth, (req, res) => {
   ])
     .then((applications) => {
       res.json(applications);
+      res.json(applications.jobApplicant.resumeLink)
     })
     .catch((err) => {
       res.status(400).json(err);

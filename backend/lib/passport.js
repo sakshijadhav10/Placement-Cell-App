@@ -9,7 +9,7 @@ passport.use(
         {
             clientID: process.env.CLIENT_ID,
             clientSecret: process.env.CLIENT_SECRET,
-            callbackURL: "http:localhost:4444/auth/google/callback",
+            callbackURL: "https://placement-cell-app-2.onrender.com/auth/google/callback",
             passReqToCallback: true,
         },
         async (accessToken, refreshToken, profile, done) => {

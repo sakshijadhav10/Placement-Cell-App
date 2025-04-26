@@ -10,26 +10,24 @@ require("dotenv").config();
 const passport = require("./lib/passport");
 
 // MongoDB
+// mongoose
+//   .connect("mongodb://localhost:27017/Placement-Cell", {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true,
+//     useCreateIndex: true,
+//     useFindAndModify: false,
+//   })
+//   .then((res) => console.log("Connected to DB"))
+//   .catch((err) => console.log(err));
 mongoose
-  .connect("mongodb://localhost:27017/Placement-Cell", {
+  .connect("mongodb+srv://sakshi_10:Sakshi10@cluster0.p8sxjzs.mongodb.net/PlacementCell", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
   })
-  .then((res) => console.log("Connected to DB"))
-  .catch((err) => console.log(err));
+  .then(() => console.log("✅ Connected to MongoDB Atlas"))
+  .catch((err) => console.error("❌ MongoDB connection error:", err));
 
-// initialising directories
-// if (!fs.existsSync("./public")) {
-//   fs.mkdirSync("./public");
-// }
-// if (!fs.existsSync("./public/resume")) {
-//   fs.mkdirSync("./public/resume");
-// }
-// if (!fs.existsSync("./public/profile")) {
-//   fs.mkdirSync("./public/profile");
-// }
+
 
 const app = express();
 const port = 4444;
@@ -77,6 +75,10 @@ app.use("/auth", require("./routes/authRoutes"));
 app.use("/api", require("./routes/apiRoutes"));
 // app.use("/upload", require("./routes/uploadRoutes"));
 // app.use("/host", require("./routes/downloadRoutes"));
+
+app.get("/", (req, res) => {
+  res.send("Backend is running 🚀");
+});
 
 app.listen(port, () => {
   console.log(`Server started on port ${port}!`);

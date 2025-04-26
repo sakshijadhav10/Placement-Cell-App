@@ -26,6 +26,7 @@ import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import { SetPopupContext } from "../../App";
 
 import apiList, { server } from "../../lib/apiList";
+import { resumeLink } from "../../lib/isAuth";
 
 
 
@@ -62,6 +63,8 @@ const useStyles = makeStyles((theme) => ({
 const FilterPopup = (props) => {
   const classes = useStyles();
   const { open, handleClose, searchOptions, setSearchOptions, getData } = props;
+    
+  
   return (
     <Modal open={open} onClose={handleClose} className={classes.popupDialog}>
       <Paper
@@ -343,6 +346,7 @@ const ApplicationTile = (props) => {
   const { application, getData } = props;
   const setPopup = useContext(SetPopupContext);
   const [open, setOpen] = useState(false);
+  const [users, setUsers] = useState([]);
 
   const appliedOn = new Date(application.dateOfApplication);
 
@@ -360,38 +364,49 @@ const ApplicationTile = (props) => {
     finished: "#4EA5D9",
   };
 
-  const getResume = () => {
-    if (
-      application.jobApplicant.resume &&
-      application.jobApplicant.resume !== ""
-    ) {
-      const address = `${server}${application.jobApplicant.resume}`;
-      console.log(address);
-      axios(address, {
-        method: "GET",
-        responseType: "blob",
-      })
-        .then((response) => {
-          const file = new Blob([response.data], { type: "application/pdf" });
-          const fileURL = URL.createObjectURL(file);
-          window.open(fileURL);
-        })
-        .catch((error) => {
-          console.log(error);
-          setPopup({
-            open: true,
-            severity: "error",
-            message: "Error",
-          });
-        });
-    } else {
-      setPopup({
-        open: true,
-        severity: "error",
-        message: "No resume found",
-      });
-    }
-  };
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const res = await axios.get(apiList.users);
+        setUsers(res.data);
+      } catch (error) {
+        console.log("Error in fetching users", error);
+      }
+    };
+    fetchUsers();
+  }, []);
+  // const getResume = () => {
+  //   if (
+  //     application.jobApplicant.resume &&
+  //     application.jobApplicant.resume !== ""
+  //   ) {
+  //     const address = {resume};
+  //     console.log(address);
+  //     axios(address, {
+  //       method: "GET",
+  //       responseType: "blob",
+  //     })
+  //       .then((response) => {
+  //         const file = new Blob([response.data], { type: "application/pdf" });
+  //         const fileURL = URL.createObjectURL(file);
+  //         window.open(fileURL);
+  //       })
+  //       .catch((error) => {
+  //         console.log(error);
+  //         setPopup({
+  //           open: true,
+  //           severity: "error",
+  //           message: "Error",
+  //         });
+  //       });
+  //   } else {
+  //     setPopup({
+  //       open: true,
+  //       severity: "error",
+  //       message: "No resume found",
+  //     });
+  //   }
+  // };
 
   const updateStatus = (status) => {
     const address = `${apiList.applications}/${application._id}`;
@@ -596,16 +611,23 @@ const ApplicationTile = (props) => {
           </Grid>
         </Grid>
         <Grid item container direction="column" xs={3}>
-          <Grid item>
-            <Button
-              variant="contained"
-              className={classes.statusBlock}
-              color="primary"
-              onClick={() => getResume()}
-            >
-              Download Resume
-            </Button>
-          </Grid>
+        <Grid item>
+  {application.jobApplicant.resumeLink ? (
+    <Button
+      variant="contained"
+      className={classes.statusBlock}
+      color="primary"
+      onClick={() => {
+        const resumeUrl = `${application.jobApplicant.resumeLink}`;
+        window.open(resumeUrl, "_blank");
+      }}
+    >
+      View Resume
+    </Button>
+  ) : (
+    <Typography>No Resume Uploaded</Typography>
+  )}
+</Grid>
           <Grid item container xs>
             {buttonSet[application.status]}
           </Grid>

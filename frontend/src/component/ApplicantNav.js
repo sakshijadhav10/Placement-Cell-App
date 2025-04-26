@@ -4,8 +4,13 @@ import {
     Typography,
     Button,
     makeStyles,
+<<<<<<< HEAD
   } from "@mui/material";
 import { useEffect } from "react";
+=======
+  } from "@material-ui/core";
+import { useEffect, useState } from "react";
+>>>>>>> 306fa941cf03632aca14bfd1f244fea05648ef86
   import { useHistory } from "react-router-dom/cjs/react-router-dom.min";// React Router v6
   
   const useStyles = makeStyles((theme) => ({
@@ -42,6 +47,7 @@ import { useEffect } from "react";
   localStorage.removeItem("token");
   localStorage.removeItem("type");
   localStorage.removeItem("name");
+  localStorage.removeItem("resumeLink");
   history.push("/login");
 };
 

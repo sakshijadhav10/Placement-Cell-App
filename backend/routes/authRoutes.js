@@ -94,7 +94,7 @@ router.post("/signup", async (req, res) => {
       expiresIn: "1d",
     });
 
-    res.status(201).json({ token, type: user.type,name:user.name });
+    res.status(201).json({ token, type: user.type,name:user.name ,resumeLink:user.resumeLink});
   } catch (err) {
     console.error("Signup Error:", err);
     res.status(500).json({ message: "Internal Server Error" });
@@ -136,7 +136,8 @@ router.post("/login", async (req, res) => {
     res.json({
       token: token,
       type: user.type,
-      name:user.name
+      name:user.name,
+      resumeLink:user.resumeLink,
     });
   } catch (error) {
     console.log(error);
@@ -147,42 +148,6 @@ router.post("/login", async (req, res) => {
     });
   }
 });
-router.get(
-  "/auth/google",
-  passport.authenticate("google", {
-    scope: ["profile", "email"],
-  })
-);
-
-// router.get(
-//   "/google/callback",
-//   passport.authenticate("google", {
-    
-//     failureRedirect: "http://localhost:3000/login",
-//   }),
-//   (req, res) => {
-//     const { user, token } = req.user;
-    
-//     // Redirect to frontend with JWT token
-//     res.redirect(`http://localhost:3000/applicant?token=${token}&user=${encodeURIComponent(JSON.stringify(user))}`);
-// }
-// );
-
-router.get(
-  "/google/callback",
-  passport.authenticate("google", {
-    failureRedirect: "http://localhost:3000/login",
-  }),
-  (req, res) => {
-    // Create JWT token
-    const token = jwt.sign({ _id: req.user._id }, authKeys.jwtSecretKey, { expiresIn: "1h" });
-
-    res.cookie("token", token, { httpOnly: true });
-
-    // Redirect to frontend with token
-    res.redirect(`http://localhost:3000/applicant?token=${token}&type=${req.user.type}`);
-  }
-);
 
 
 const transporter = nodemailer.createTransport({
