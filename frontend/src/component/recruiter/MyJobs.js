@@ -5,7 +5,6 @@ import {
   Grid,
   IconButton,
   InputAdornment,
-  makeStyles,
   Paper,
   TextField,
   Typography,
@@ -14,19 +13,21 @@ import {
   FormControlLabel,
   MenuItem,
   Checkbox,
-} from "@material-ui/core";
+  Pagination, // Updated for MUI v5
+} from "@mui/material"; // MUI v5 import
+import { makeStyles } from "@mui/styles"; // Keep this if you're using it, but consider switching to 'sx' prop for styling in MUI v5
 import { useHistory } from "react-router-dom";
-import Rating from "@material-ui/lab/Rating";
-import Pagination from "@material-ui/lab/Pagination";
-import axios from "axios";
-import SearchIcon from "@material-ui/icons/Search";
-import FilterListIcon from "@material-ui/icons/FilterList";
-import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
-import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
+import Rating from "@mui/material/Rating"; // Updated for MUI v5
+import SearchIcon from "@mui/icons-material/Search"; // MUI v5 icons import
+import FilterListIcon from "@mui/icons-material/FilterList"; // MUI v5 icons import
+import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward"; // MUI v5 icons import
+import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward"; // MUI v5 icons import
 
 import { SetPopupContext } from "../../App";
 
 import apiList from "../../lib/apiList";
+
+
 
 const useStyles = makeStyles((theme) => ({
   body: {

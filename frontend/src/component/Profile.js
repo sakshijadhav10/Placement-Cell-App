@@ -4,32 +4,32 @@ import {
   Grid,
   Typography,
   Paper,
-  makeStyles,
   TextField,
   MenuItem,
-} from "@material-ui/core";
+  Autocomplete,
+  Chip,
+} from "@mui/material";
+import { makeStyles } from "@mui/styles";
 import axios from "axios";
-import ChipInput from "material-ui-chip-input";
+
 import FileUploadInput from "../lib/FileUploadInput";
-import DescriptionIcon from "@material-ui/icons/Description";
-import FaceIcon from "@material-ui/icons/Face";
+import DescriptionIcon from "@mui/icons-material/Description";
+import FaceIcon from "@mui/icons-material/Face";
 
 import { SetPopupContext } from "../App";
 
 import apiList from "../lib/apiList";
 
+
 const useStyles = makeStyles((theme) => ({
   body: {
-    // height: "inherit",
-    padding:"60px 60px",
-    // margin:"30px",
+    padding: "60px 60px",
   },
   popupDialog: {
     height: "100%",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    // padding: "30px",
   },
   inputBox: {
     width: "400px",
@@ -118,17 +118,16 @@ const Profile = (props) => {
     name: "",
     education: [],
     skills: [],
-    domain:"",
-    CGPA:"",
-    Percentage:"",
-    year:"",
-    contactnumber:"",
-    address:"",
+    domain: "",
+    CGPA: "",
+    Percentage: "",
+    year: "",
+    contactnumber: "",
+    address: "",
     resumeLink: "",
     profileLink: "",
   });
   const [phone, setPhone] = useState("");
-
 
   const [education, setEducation] = useState([
     {
@@ -276,9 +275,9 @@ const Profile = (props) => {
                   variant="outlined"
                   fullWidth
                 />
-                </Grid>
-                 <Grid item>
-                 <TextField
+              </Grid>
+              <Grid item>
+                <TextField
                   label="CGPA"
                   value={profileDetails.CGPA}
                   onChange={(event) => handleInput("CGPA", event.target.value)}
@@ -286,134 +285,100 @@ const Profile = (props) => {
                   variant="outlined"
                   fullWidth
                 />
-            </Grid>
-            <Grid item>
-                 <TextField
+              </Grid>
+              <Grid item>
+                <TextField
                   label="Percentage"
                   value={profileDetails.Percentage}
-                  onChange={(event) => handleInput("Percentage", event.target.value)}
-                  className={classes.inputBox}
-                  variant="outlined"
-                  fullWidth
-                />
-            </Grid>
-            <Grid item>
-              <TextField
-                select
-                label="Domain"
-                variant="outlined"
-                className={classes.inputBox}
-                value={profileDetails.domain}
-                onChange={(event) => handleInput("domain", event.target.value)}
-              >
-                <MenuItem value="Web Development">Web Development</MenuItem>
-                <MenuItem value="Cyber Security">Cyber Security</MenuItem>
-                <MenuItem value="Data Science">Data Science</MenuItem>
-                <MenuItem value="AI & ML">AI & ML</MenuItem>
-                <MenuItem value="Cloud Computing">Cloud Computing</MenuItem>
-                <MenuItem value="DevOps">DevOps</MenuItem>
-                <MenuItem value="other">Other</MenuItem>
-              </TextField>
-            </Grid>
-            <Grid item>
-          <TextField
-            label="Year"
-            select
-            variant="outlined"
-            className={classes.inputBox}
-            value={profileDetails.year}
-            onChange={(event) => handleInput("year", event.target.value)}
-          >
-            <MenuItem value="First-Year-A">FY-A</MenuItem>
-            <MenuItem value="First-Year-B">FY-B</MenuItem>
-            <MenuItem value="First-Year-C">FY-C</MenuItem>
-            <MenuItem value="First-Year-D">FY-D</MenuItem>
-            <MenuItem value="Second-Year-A">SY-A</MenuItem>
-            <MenuItem value="Second-Year-B">SY-B</MenuItem>
-            <MenuItem value="Second-Year-C">SY-C</MenuItem>
-            <MenuItem value="Third-Year-A">TY-A</MenuItem>
-            <MenuItem value="Third-Year-B">TY-B</MenuItem>
-            <MenuItem value="Third-Year-C">TY-C</MenuItem>
-            <MenuItem value="Fourth-Year-A">BTech-A</MenuItem>
-            <MenuItem value="Fourth-Year-B">BTech-B</MenuItem>
-            <MenuItem value="Fourth-Year-C">BTech-C</MenuItem>
-          </TextField>
-        </Grid>
-              
-              <MultifieldInput
-                education={education}
-                setEducation={setEducation}
-              />
-              <Grid item>
-                <ChipInput
-                  className={classes.inputBox}
-                  label="Skills"
-                  variant="outlined"
-                  helperText="Press enter to add skills"
-                  value={profileDetails.skills}
-                  onAdd={(chip) =>
-                    setProfileDetails({
-                      ...profileDetails,
-                      skills: [...profileDetails.skills, chip],
-                    })
+                  onChange={(event) =>
+                    handleInput("Percentage", event.target.value)
                   }
-                  onDelete={(chip, index) => {
-                    let skills = profileDetails.skills;
-                    skills.splice(index, 1);
-                    setProfileDetails({
-                      ...profileDetails,
-                      skills: skills,
-                    });
-                  }}
+                  className={classes.inputBox}
+                  variant="outlined"
                   fullWidth
                 />
               </Grid>
               <Grid item>
-                <FileUploadInput
+                <TextField
+                  select
+                  label="Domain"
+                  variant="outlined"
                   className={classes.inputBox}
-                  label="ResumeLink (.pdf)"
-                  icon={<DescriptionIcon />}
-                  uploadTo={apiList.uploadResume}
-                  handleInput={handleInput}
-                  identifier={"resume"}
+                  value={profileDetails.domain}
+                  onChange={(event) => handleInput("domain", event.target.value)}
+                >
+                  <MenuItem value="Web Development">Web Development</MenuItem>
+                  <MenuItem value="Cyber Security">Cyber Security</MenuItem>
+                  <MenuItem value="Data Science">Data Science</MenuItem>
+                  <MenuItem value="AI & ML">AI & ML</MenuItem>
+                  <MenuItem value="Cloud Computing">Cloud Computing</MenuItem>
+                  <MenuItem value="DevOps">DevOps</MenuItem>
+                  <MenuItem value="other">Other</MenuItem>
+                </TextField>
+              </Grid>
+              <Grid item>
+                <TextField
+                  label="Year"
+                  select
+                  variant="outlined"
+                  className={classes.inputBox}
+                  value={profileDetails.year}
+                  onChange={(event) => handleInput("year", event.target.value)}
+                >
+                  <MenuItem value="First-Year-A">FY-A</MenuItem>
+                  <MenuItem value="First-Year-B">FY-B</MenuItem>
+                  <MenuItem value="First-Year-C">FY-C</MenuItem>
+                  <MenuItem value="First-Year-D">FY-D</MenuItem>
+                  <MenuItem value="Second-Year-A">SY-A</MenuItem>
+                  <MenuItem value="Second-Year-B">SY-B</MenuItem>
+                  <MenuItem value="Second-Year-C">SY-C</MenuItem>
+                  <MenuItem value="Third-Year-A">TY-A</MenuItem>
+                  <MenuItem value="Third-Year-B">TY-B</MenuItem>
+                  <MenuItem value="Third-Year-C">TY-C</MenuItem>
+                  <MenuItem value="Fourth-Year-A">BTech-A</MenuItem>
+                  <MenuItem value="Fourth-Year-B">BTech-B</MenuItem>
+                  <MenuItem value="Fourth-Year-C">BTech-C</MenuItem>
+                </TextField>
+              </Grid>
+              <MultifieldInput education={education} setEducation={setEducation} />
+              <Grid item>
+                <Autocomplete
+                  multiple
+                  freeSolo
+                  options={[]}
+                  value={profileDetails.skills}
+                  onChange={(event, newValue) =>
+                    setProfileDetails({ ...profileDetails, skills: newValue })
+                  }
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      label="Skills"
+                      variant="outlined"
+                      className={classes.inputBox}
+                    />
+                  )}
+                  renderTags={(value, getTagProps) =>
+                    value.map((option, index) => (
+                      <Chip label={option} {...getTagProps({ index })} />
+                    ))
+                  }
                 />
               </Grid>
               <Grid item>
-                <FileUploadInput
-                  className={classes.inputBox}
-                  label="Profile Photo (.jpg/.png)"
-                  icon={<FaceIcon />}
-                  uploadTo={apiList.uploadProfileImage}
-                  handleInput={handleInput}
-                  identifier={"profile"}
-                />
+                <Button
+                  onClick={editDetails}
+                  variant="contained"
+                  color="primary"
+                  style={{ width: "250px" }}
+                >
+                  Edit Details
+                </Button>
               </Grid>
-              <Grid item>
-          <TextField
-            label="Address"
-            multiline
-            rows={4}
-            className={classes.inputBox}
-            variant="outlined"
-            value={profileDetails.address}
-            onChange={(event) => handleInput("address", event.target.value)}
-          />
-        </Grid>
             </Grid>
-            <Button
-              variant="contained"
-              color="primary"
-              style={{ padding: "10px 50px", marginTop: "30px" }}
-              onClick={() => handleUpdate()}
-            >
-              Update Details
-            </Button>
           </Paper>
         </Grid>
       </Grid>
-      {/* <Modal open={open} onClose={handleClose} className={classes.popupDialog}> */}
-
-      {/* </Modal> */}
     </>
   );
 };

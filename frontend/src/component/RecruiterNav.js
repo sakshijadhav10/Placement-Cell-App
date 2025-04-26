@@ -4,7 +4,7 @@ import {
     Typography,
     Button,
     makeStyles,
-  } from "@material-ui/core";
+  } from "@mui/material";
   import { useHistory } from "react-router-dom";
   
 //   import isAuth, { userType } from "../lib/isAuth";

@@ -9,7 +9,7 @@ import {
   InputBase,
   alpha,
   Button,
-} from "@material-ui/core";
+} from "@mui/material";
 import React, { useEffect, useState } from "react";
 import apiList from "../../lib/apiList";
 import axios from "axios";

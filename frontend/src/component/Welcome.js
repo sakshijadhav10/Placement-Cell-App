@@ -1,4 +1,5 @@
-import { Grid, Typography } from "@material-ui/core";
+import { Grid, makeStyles } from "@mui/material";
+
 
 const Welcome = (props) => {
   return (

@@ -1,5 +1,6 @@
 import React from "react";
-import { Button } from "@material-ui/core";
+import { Button } from "@mui/material";
+
 import "./BuildCV.css"; // Import the CSS file
 
 // Importing images for templates

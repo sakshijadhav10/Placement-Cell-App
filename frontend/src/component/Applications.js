@@ -3,14 +3,13 @@ import {
   Button,
   Chip,
   Grid,
-  makeStyles,
   Paper,
   Typography,
   Modal,
-
-} from "@material-ui/core";
-import Rating from "@material-ui/lab/Rating";
+} from "@mui/material";  // Updated import for MUI v5
+import Rating from "@mui/material/Rating";  // Updated for MUI v5
 import axios from "axios";
+
 
 import { SetPopupContext } from "../App";
 

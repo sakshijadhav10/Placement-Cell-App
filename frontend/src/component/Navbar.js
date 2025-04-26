@@ -8,7 +8,8 @@ import {
   MenuItem,
   IconButton,
   Avatar,
-} from "@material-ui/core";
+} from "@mui/material";
+
 import { useHistory } from "react-router-dom";
 import { useEffect, useState } from "react";
 

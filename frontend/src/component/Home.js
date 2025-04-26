@@ -5,28 +5,27 @@ import {
   Grid,
   IconButton,
   InputAdornment,
-  makeStyles,
   Paper,
   TextField,
   Typography,
   Modal,
   Slider,
   FormControlLabel,
- 
   MenuItem,
   Checkbox,
-} from "@material-ui/core";
-import Rating from "@material-ui/lab/Rating";
-import axios from "axios";
-import SearchIcon from "@material-ui/icons/Search";
-import FilterListIcon from "@material-ui/icons/FilterList";
-import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
-import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
+} from "@mui/material";  // Updated for MUI v5
+import { makeStyles } from "@mui/styles"; // MUI styles still available, but consider MUI's new sx prop
+import Rating from "@mui/material/Rating";  // Updated for MUI v5
+import SearchIcon from "@mui/icons-material/Search";  // Updated for MUI v5
+import FilterListIcon from "@mui/icons-material/FilterList";  // Updated for MUI v5
+import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";  // Updated for MUI v5
+import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";  // Updated for MUI v5
 
 import { SetPopupContext } from "../App";
 
 import apiList from "../lib/apiList";
 import { userType } from "../lib/isAuth";
+
 
 const useStyles = makeStyles((theme) => ({
   body: {

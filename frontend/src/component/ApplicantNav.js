@@ -4,7 +4,7 @@ import {
     Typography,
     Button,
     makeStyles,
-  } from "@material-ui/core";
+  } from "@mui/material";
 import { useEffect } from "react";
   import { useHistory } from "react-router-dom/cjs/react-router-dom.min";// React Router v6
   

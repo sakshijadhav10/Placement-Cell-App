@@ -8,9 +8,10 @@ import {
   makeStyles,
   TextField,
   MenuItem,
-} from "@material-ui/core";
+  Chip,
+  Autocomplete,
+} from "@mui/material";
 import axios from "axios";
-import ChipInput from "material-ui-chip-input";
 
 import { SetPopupContext } from "../../App";
 
@@ -35,16 +36,14 @@ const CreateJobs = (props) => {
 
   const [jobDetails, setJobDetails] = useState({
     title: "",
-
-    companyName:"",
-
+    companyName: "",
     maxApplicants: 100,
     maxPositions: 30,
     deadline: new Date(new Date().getTime() + 10 * 24 * 60 * 60 * 1000)
       .toISOString()
       .substr(0, 16),
     skillsets: [],
-    domain:'',
+    domain: "Web Development",
     jobType: "Full Time",
     duration: 0,
     salary: 0,
@@ -73,22 +72,19 @@ const CreateJobs = (props) => {
         });
         setJobDetails({
           title: "",
-
-          companyName:"",
-
+          companyName: "",
           maxApplicants: 100,
           maxPositions: 30,
           deadline: new Date(new Date().getTime() + 10 * 24 * 60 * 60 * 1000)
             .toISOString()
             .substr(0, 16),
           skillsets: [],
-          domain:'Web Developer',
+          domain: "Web Development",
           jobType: "Full Time",
           duration: 0,
           salary: 0,
         });
       })
-      
       .catch((err) => {
         setPopup({
           open: true,
@@ -97,7 +93,6 @@ const CreateJobs = (props) => {
         });
         console.log(err.response);
       });
-
   };
 
   return (
@@ -143,61 +138,57 @@ const CreateJobs = (props) => {
                 </Grid>
                 <Grid item>
                   <TextField
-
                     label="Company Name"
                     value={jobDetails.companyName}
                     onChange={(event) =>
                       handleInput("companyName", event.target.value)
-
                     }
                     variant="outlined"
                     fullWidth
                   />
                 </Grid>
                 <Grid item>
-                  <ChipInput
-                    className={classes.inputBox}
-                    label="Skills"
-                    variant="outlined"
-                    helperText="Press enter to add skills"
+                  <Autocomplete
+                    multiple
+                    id="skills-input"
+                    freeSolo
+                    options={[]}
                     value={jobDetails.skillsets}
-                    onAdd={(chip) =>
-                      setJobDetails({
-                        ...jobDetails,
-                        skillsets: [...jobDetails.skillsets, chip],
-                      })
-                    }
-                    onDelete={(chip, index) => {
-                      let skillsets = jobDetails.skillsets;
-                      skillsets.splice(index, 1);
-                      setJobDetails({
-                        ...jobDetails,
-                        skillsets: skillsets,
-                      });
+                    onChange={(event, newSkills) => {
+                      handleInput("skillsets", newSkills);
                     }}
-                    fullWidth
+                    renderInput={(params) => (
+                      <TextField {...params} label="Skills" variant="outlined" />
+                    )}
+                    renderTags={(value, getTagProps) =>
+                      value.map((option, index) => (
+                        <Chip
+                          label={option}
+                          {...getTagProps({ index })}
+                          key={index}
+                        />
+                      ))
+                    }
                   />
                 </Grid>
                 <Grid item>
-                <TextField
-                select
-                
-                label="Domain"
-                variant="outlined"
-                className={classes.inputBox}
-                value={jobDetails.domain}
-                onChange={(event) => handleInput("domain", event.target.value)}
-                fullWidth
-              >
-                <MenuItem value="Web Development">Web Development</MenuItem>
-                <MenuItem value="Cyber Security">Cyber Security</MenuItem>
-                <MenuItem value="Data Science">Data Science</MenuItem>
-                <MenuItem value="AI & ML">AI & ML</MenuItem>
-                <MenuItem value="Cloud Computing">Cloud Computing</MenuItem>
-                <MenuItem value="DevOps">DevOps</MenuItem>
-                <MenuItem value="other">Other</MenuItem>
-              </TextField>
-            </Grid>
+                  <TextField
+                    select
+                    label="Domain"
+                    variant="outlined"
+                    value={jobDetails.domain}
+                    onChange={(event) => handleInput("domain", event.target.value)}
+                    fullWidth
+                  >
+                    <MenuItem value="Web Development">Web Development</MenuItem>
+                    <MenuItem value="Cyber Security">Cyber Security</MenuItem>
+                    <MenuItem value="Data Science">Data Science</MenuItem>
+                    <MenuItem value="AI & ML">AI & ML</MenuItem>
+                    <MenuItem value="Cloud Computing">Cloud Computing</MenuItem>
+                    <MenuItem value="DevOps">DevOps</MenuItem>
+                    <MenuItem value="other">Other</MenuItem>
+                  </TextField>
+                </Grid>
                 <Grid item>
                   <TextField
                     select
@@ -294,7 +285,6 @@ const CreateJobs = (props) => {
                 color="primary"
                 style={{ padding: "10px 50px", marginTop: "30px" }}
                 onClick={() => handleUpdate()}
-              
               >
                 Create Job
               </Button>

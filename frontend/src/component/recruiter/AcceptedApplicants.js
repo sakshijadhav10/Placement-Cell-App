@@ -5,7 +5,6 @@ import {
   Grid,
   IconButton,
   InputAdornment,
-  makeStyles,
   Paper,
   TextField,
   Typography,
@@ -16,17 +15,20 @@ import {
   MenuItem,
   Checkbox,
   Avatar,
-} from "@material-ui/core";
+  Rating, // Updated to import from @mui/material
+} from "@mui/material"; // Import from MUI v5
+import { makeStyles } from "@mui/styles"; // Still supports makeStyles, but you may want to switch to `sx` prop for MUI v5
 import { useParams } from "react-router-dom";
-import Rating from "@material-ui/lab/Rating";
 import axios from "axios";
-import FilterListIcon from "@material-ui/icons/FilterList";
-import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
-import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
+import FilterListIcon from "@mui/icons-material/FilterList";
+import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
+import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 
 import { SetPopupContext } from "../../App";
 
 import apiList, { server } from "../../lib/apiList";
+
+
 
 const useStyles = makeStyles((theme) => ({
   body: {

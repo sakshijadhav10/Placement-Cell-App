@@ -6,7 +6,7 @@ import {
   makeStyles,
   Paper,
   Link,
-} from "@material-ui/core";
+} from "@mui/material";
 import { FcGoogle } from "react-icons/fc"; // For Google icon
 import axios from "axios";
 import { Redirect, Link as RouterLink } from "react-router-dom";
