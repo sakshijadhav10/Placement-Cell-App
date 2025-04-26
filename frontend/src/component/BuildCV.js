@@ -16,7 +16,7 @@ const BuildCV = () => {
   // Images for the templates
   const templates = [
     { src: s, downloadLink: "https://drive.google.com/uc?id=1JK3SN0L8BPCKvi5hjCl7k0G4kz0XNZR2&export=download" },
-    { src: a, downloadLink: "https://drive.google.com/uc?id=1-li7z0WOB2ukUhvmf6Oris_6ap1_oIRj&export=download" },
+    { src: a, downloadLink: "https://drive.google.com/uc?id=1JK3SN0L8BPCKvi5hjCl7k0G4kz0XNZR2&export=download" },
     { src: b, downloadLink: "https://drive.google.com/uc?id=1mt521IgPyGTQWshtbSGh5FKVaURQdZaK&export=download" },
     { src: c, downloadLink: "https://drive.google.com/uc?id=1-0q8rPp7PckQC3rowWkVCXOlsvuuG-1E&export=download" },
   ];
